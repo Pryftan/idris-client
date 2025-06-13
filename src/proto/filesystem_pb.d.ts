@@ -11,6 +11,29 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_filesystem: GenFile;
 
 /**
+ * File information
+ *
+ * @generated from message fs.FileInfo
+ */
+export declare type FileInfo = Message<"fs.FileInfo"> & {
+  /**
+   * @generated from field: string filename = 1;
+   */
+  filename: string;
+
+  /**
+   * @generated from field: bool is_dir = 2;
+   */
+  isDir: boolean;
+};
+
+/**
+ * Describes the message fs.FileInfo.
+ * Use `create(FileInfoSchema)` to create a new message.
+ */
+export declare const FileInfoSchema: GenMessage<FileInfo>;
+
+/**
  * Request a list of files
  *
  * @generated from message fs.ListFilesRequest
@@ -29,15 +52,15 @@ export declare type ListFilesRequest = Message<"fs.ListFilesRequest"> & {
 export declare const ListFilesRequestSchema: GenMessage<ListFilesRequest>;
 
 /**
- * Response with filenames
+ * Response with file information
  *
  * @generated from message fs.ListFilesResponse
  */
 export declare type ListFilesResponse = Message<"fs.ListFilesResponse"> & {
   /**
-   * @generated from field: repeated string filenames = 1;
+   * @generated from field: repeated fs.FileInfo files = 1;
    */
-  filenames: string[];
+  files: FileInfo[];
 };
 
 /**

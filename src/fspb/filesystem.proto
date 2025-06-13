@@ -1,16 +1,22 @@
 syntax = "proto3";
 package fs;
 
-option go_package = "./fspb";
+option go_package = "local/proto";
+
+// File information
+message FileInfo {
+  string filename = 1;
+  bool is_dir = 2;
+}
 
 // Request a list of files
 message ListFilesRequest {
   string path = 1;
 }
 
-// Response with filenames
+// Response with file information
 message ListFilesResponse {
-  repeated string filenames = 1;
+  repeated FileInfo files = 1;
 }
 
 // Request image data

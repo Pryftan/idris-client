@@ -8,35 +8,42 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2
  * Describes the file filesystem.proto.
  */
 export const file_filesystem = /*@__PURE__*/
-  fileDesc("ChBmaWxlc3lzdGVtLnByb3RvEgJmcyIgChBMaXN0RmlsZXNSZXF1ZXN0EgwKBHBhdGgYASABKAkiJgoRTGlzdEZpbGVzUmVzcG9uc2USEQoJZmlsZW5hbWVzGAEgAygJIi4KD0dldEltYWdlUmVxdWVzdBIMCgRwYXRoGAEgASgJEg0KBXdpZHRoGAIgASgNIiYKEEdldEltYWdlUmVzcG9uc2USEgoKaW1hZ2VfZGF0YRgBIAEoDDJ9CgpGaWxlU3lzdGVtEjgKCUxpc3RGaWxlcxIULmZzLkxpc3RGaWxlc1JlcXVlc3QaFS5mcy5MaXN0RmlsZXNSZXNwb25zZRI1CghHZXRJbWFnZRITLmZzLkdldEltYWdlUmVxdWVzdBoULmZzLkdldEltYWdlUmVzcG9uc2VCCFoGLi9mc3BiYgZwcm90bzM");
+  fileDesc("ChBmaWxlc3lzdGVtLnByb3RvEgJmcyIsCghGaWxlSW5mbxIQCghmaWxlbmFtZRgBIAEoCRIOCgZpc19kaXIYAiABKAgiIAoQTGlzdEZpbGVzUmVxdWVzdBIMCgRwYXRoGAEgASgJIjAKEUxpc3RGaWxlc1Jlc3BvbnNlEhsKBWZpbGVzGAEgAygLMgwuZnMuRmlsZUluZm8iLgoPR2V0SW1hZ2VSZXF1ZXN0EgwKBHBhdGgYASABKAkSDQoFd2lkdGgYAiABKA0iJgoQR2V0SW1hZ2VSZXNwb25zZRISCgppbWFnZV9kYXRhGAEgASgMMn0KCkZpbGVTeXN0ZW0SOAoJTGlzdEZpbGVzEhQuZnMuTGlzdEZpbGVzUmVxdWVzdBoVLmZzLkxpc3RGaWxlc1Jlc3BvbnNlEjUKCEdldEltYWdlEhMuZnMuR2V0SW1hZ2VSZXF1ZXN0GhQuZnMuR2V0SW1hZ2VSZXNwb25zZUINWgtsb2NhbC9wcm90b2IGcHJvdG8z");
+
+/**
+ * Describes the message fs.FileInfo.
+ * Use `create(FileInfoSchema)` to create a new message.
+ */
+export const FileInfoSchema = /*@__PURE__*/
+  messageDesc(file_filesystem, 0);
 
 /**
  * Describes the message fs.ListFilesRequest.
  * Use `create(ListFilesRequestSchema)` to create a new message.
  */
 export const ListFilesRequestSchema = /*@__PURE__*/
-  messageDesc(file_filesystem, 0);
+  messageDesc(file_filesystem, 1);
 
 /**
  * Describes the message fs.ListFilesResponse.
  * Use `create(ListFilesResponseSchema)` to create a new message.
  */
 export const ListFilesResponseSchema = /*@__PURE__*/
-  messageDesc(file_filesystem, 1);
+  messageDesc(file_filesystem, 2);
 
 /**
  * Describes the message fs.GetImageRequest.
  * Use `create(GetImageRequestSchema)` to create a new message.
  */
 export const GetImageRequestSchema = /*@__PURE__*/
-  messageDesc(file_filesystem, 2);
+  messageDesc(file_filesystem, 3);
 
 /**
  * Describes the message fs.GetImageResponse.
  * Use `create(GetImageResponseSchema)` to create a new message.
  */
 export const GetImageResponseSchema = /*@__PURE__*/
-  messageDesc(file_filesystem, 3);
+  messageDesc(file_filesystem, 4);
 
 /**
  * Service definition
