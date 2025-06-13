@@ -11,9 +11,9 @@
     "pb:generate": "npx protoc -I=src/fspb --es_out=src/proto --connect-es_out=src/proto src/fspb/filesystem.proto"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^2.5.2",
-    "@connectrpc/connect": "^2.0.2",
-    "@connectrpc/connect-web": "^2.0.2",
+    "@bufbuild/protobuf": "^1.10.1",
+    "@connectrpc/connect": "^1.6.1",
+    "@connectrpc/connect-web": "^1.6.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

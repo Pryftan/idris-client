@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { FileSystem, type FileInfo } from './proto/filesystem_pb';
+import { FileSystem } from './proto/filesystem_connectweb';
+import { type FileInfo } from './proto/filesystem_pb';
 import './App.css'
 
 const transport = createConnectTransport({
