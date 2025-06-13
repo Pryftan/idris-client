@@ -24,9 +24,6 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
-      '@bufbuild/protoc-gen-connect-web':
-        specifier: ^0.11.0
-        version: 0.11.0(@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2))
       '@bufbuild/protoc-gen-es':
         specifier: ^2.5.2
         version: 2.5.2(@bufbuild/protobuf@2.5.2)
@@ -157,20 +154,6 @@ packages:
 
   '@bufbuild/protobuf@2.5.2':
     resolution: {integrity: sha512-foZ7qr0IsUBjzWIq+SuBLfdQCpJ1j8cTuNNT4owngTHoN5KsJb8L9t65fzz7SCeSWzescoOil/0ldqiL041ABg==}
-
-  '@bufbuild/protoc-gen-connect-web@0.11.0':
-    resolution: {integrity: sha512-7GvYkQjN6LP/ixtosI4JBN8eph2kS5XNju9zFwBuJ6aHqfl1sNRkRWG8LEdtTJtyW2R3QypAUyLfpLQf/ZyRVw==}
-    engines: {node: '>=16.0.0'}
-    deprecated: This package is no longer supported. Please switch to use https://www.npmjs.com/package/@bufbuild/protoc-gen-connect-es. Details for switching can be found at https://github.com/bufbuild/connect-es/discussions/647
-    hasBin: true
-    peerDependencies:
-      '@bufbuild/connect': 0.11.0
-      '@bufbuild/protoc-gen-es': ^1.2.1
-    peerDependenciesMeta:
-      '@bufbuild/connect':
-        optional: true
-      '@bufbuild/protoc-gen-es':
-        optional: true
 
   '@bufbuild/protoc-gen-es@2.5.2':
     resolution: {integrity: sha512-G9rvJ3CH1MXxUTppBJLdhc+wS2m6LR1Tvi0sGoDDChmiqJVkOhIeYrqtGMqqLqiE44I7uJGDaYcn1PG3aIGJUg==}
@@ -1329,15 +1312,6 @@ snapshots:
   '@bufbuild/protobuf@1.10.1': {}
 
   '@bufbuild/protobuf@2.5.2': {}
-
-  '@bufbuild/protoc-gen-connect-web@0.11.0(@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2))':
-    dependencies:
-      '@bufbuild/protobuf': 1.10.1
-      '@bufbuild/protoplugin': 1.10.1
-    optionalDependencies:
-      '@bufbuild/protoc-gen-es': 2.5.2(@bufbuild/protobuf@2.5.2)
-    transitivePeerDependencies:
-      - supports-color
 
   '@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2)':
     dependencies:
