@@ -1,0 +1,31 @@
+syntax = "proto3";
+package fs;
+
+option go_package = "./fspb";
+
+// Request a list of files
+message ListFilesRequest {
+  string path = 1;
+}
+
+// Response with filenames
+message ListFilesResponse {
+  repeated string filenames = 1;
+}
+
+// Request image data
+message GetImageRequest {
+  string path = 1;
+  uint32 width = 2;
+}
+
+// Binary image data
+message GetImageResponse {
+  bytes image_data = 1;
+}
+
+// Service definition
+service FileSystem {
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse);
+  rpc GetImage(GetImageRequest) returns (GetImageResponse);
+}
