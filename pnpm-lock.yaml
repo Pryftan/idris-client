@@ -25,11 +25,11 @@ importers:
         version: 19.1.0(react@19.1.0)
     devDependencies:
       '@bufbuild/protoc-gen-es':
-        specifier: ^2.5.2
-        version: 2.5.2(@bufbuild/protobuf@2.5.2)
+        specifier: ^1.10.1
+        version: 1.10.1(@bufbuild/protobuf@2.5.2)
       '@connectrpc/protoc-gen-connect-es':
         specifier: ^1.6.1
-        version: 1.6.1(@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2))(@connectrpc/connect@2.0.2(@bufbuild/protobuf@2.5.2))
+        version: 1.6.1(@bufbuild/protoc-gen-es@1.10.1(@bufbuild/protobuf@2.5.2))(@connectrpc/connect@2.0.2(@bufbuild/protobuf@2.5.2))
       '@eslint/js':
         specifier: ^9.25.0
         version: 9.28.0
@@ -155,21 +155,18 @@ packages:
   '@bufbuild/protobuf@2.5.2':
     resolution: {integrity: sha512-foZ7qr0IsUBjzWIq+SuBLfdQCpJ1j8cTuNNT4owngTHoN5KsJb8L9t65fzz7SCeSWzescoOil/0ldqiL041ABg==}
 
-  '@bufbuild/protoc-gen-es@2.5.2':
-    resolution: {integrity: sha512-G9rvJ3CH1MXxUTppBJLdhc+wS2m6LR1Tvi0sGoDDChmiqJVkOhIeYrqtGMqqLqiE44I7uJGDaYcn1PG3aIGJUg==}
+  '@bufbuild/protoc-gen-es@1.10.1':
+    resolution: {integrity: sha512-YADugbvibIdZSb0NGf5OF87IyKTuMvMFZ7vMHgm6pL1SCfDwJ/ZRianTdrPG9hq/gOipK+NwHmXBViyS3J7nxA==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
-      '@bufbuild/protobuf': 2.5.2
+      '@bufbuild/protobuf': 1.10.1
     peerDependenciesMeta:
       '@bufbuild/protobuf':
         optional: true
 
   '@bufbuild/protoplugin@1.10.1':
     resolution: {integrity: sha512-LaSbfwabAFIvbVnbn8jWwElRoffCIxhVraO8arliVwWupWezHLXgqPHEYLXZY/SsAR+/YsFBQJa8tAGtNPJyaQ==}
-
-  '@bufbuild/protoplugin@2.5.2':
-    resolution: {integrity: sha512-7d/NUae/ugs/qgHEYOwkVWGDE3Bf/xjuGviVFs38+MLRdwiHNTiuvzPVwuIPo/1wuZCZn3Nax1cg1owLuY72xw==}
 
   '@connectrpc/connect-web@2.0.2':
     resolution: {integrity: sha512-QANMFPiL2o66BdBEctg4TsQLe5ozsBLqcle3dCBp7BwGlNGTY6NnNnqmt+YRnpeMW88GgomJwWNMGCrRD9pRKA==}
@@ -1112,11 +1109,6 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  typescript@5.4.5:
-    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@5.8.3:
     resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
@@ -1313,9 +1305,9 @@ snapshots:
 
   '@bufbuild/protobuf@2.5.2': {}
 
-  '@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2)':
+  '@bufbuild/protoc-gen-es@1.10.1(@bufbuild/protobuf@2.5.2)':
     dependencies:
-      '@bufbuild/protoplugin': 2.5.2
+      '@bufbuild/protoplugin': 1.10.1
     optionalDependencies:
       '@bufbuild/protobuf': 2.5.2
     transitivePeerDependencies:
@@ -1329,14 +1321,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@bufbuild/protoplugin@2.5.2':
-    dependencies:
-      '@bufbuild/protobuf': 2.5.2
-      '@typescript/vfs': 1.6.1(typescript@5.4.5)
-      typescript: 5.4.5
-    transitivePeerDependencies:
-      - supports-color
-
   '@connectrpc/connect-web@2.0.2(@bufbuild/protobuf@2.5.2)(@connectrpc/connect@2.0.2(@bufbuild/protobuf@2.5.2))':
     dependencies:
       '@bufbuild/protobuf': 2.5.2
@@ -1346,12 +1330,12 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 2.5.2
 
-  '@connectrpc/protoc-gen-connect-es@1.6.1(@bufbuild/protoc-gen-es@2.5.2(@bufbuild/protobuf@2.5.2))(@connectrpc/connect@2.0.2(@bufbuild/protobuf@2.5.2))':
+  '@connectrpc/protoc-gen-connect-es@1.6.1(@bufbuild/protoc-gen-es@1.10.1(@bufbuild/protobuf@2.5.2))(@connectrpc/connect@2.0.2(@bufbuild/protobuf@2.5.2))':
     dependencies:
       '@bufbuild/protobuf': 1.10.1
       '@bufbuild/protoplugin': 1.10.1
     optionalDependencies:
-      '@bufbuild/protoc-gen-es': 2.5.2(@bufbuild/protobuf@2.5.2)
+      '@bufbuild/protoc-gen-es': 1.10.1(@bufbuild/protobuf@2.5.2)
       '@connectrpc/connect': 2.0.2(@bufbuild/protobuf@2.5.2)
     transitivePeerDependencies:
       - supports-color
@@ -1714,13 +1698,6 @@ snapshots:
     dependencies:
       debug: 4.4.1
       typescript: 4.5.2
-    transitivePeerDependencies:
-      - supports-color
-
-  '@typescript/vfs@1.6.1(typescript@5.4.5)':
-    dependencies:
-      debug: 4.4.1
-      typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
 
@@ -2197,8 +2174,6 @@ snapshots:
       - supports-color
 
   typescript@4.5.2: {}
-
-  typescript@5.4.5: {}
 
   typescript@5.8.3: {}
 
