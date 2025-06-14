@@ -79,6 +79,15 @@ function App() {
     <>
       <div className="card">
         <h2>Pictures</h2>
+        {picture && (
+          <div className="image-container">
+            <div className="navigation">
+              <button onClick={() => navigateImage('prev')}>Previous</button>
+              <button onClick={() => navigateImage('next')}>Next</button>
+            </div>
+            <img src={picture} alt="Picture" />
+          </div>
+        )}
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {!loading && !error && folder.length > 0 && (
@@ -96,15 +105,6 @@ function App() {
               <li key={file.filename} onClick={() => selectRow(file)}>{file.filename}</li>
             ))}
           </ul>
-        )}
-        {picture && (
-          <div className="image-container">
-            <div className="navigation">
-              <button onClick={() => navigateImage('prev')}>Previous</button>
-              <button onClick={() => navigateImage('next')}>Next</button>
-            </div>
-            <img src={picture} alt="Picture" />
-          </div>
         )}
       </div>
     </>
