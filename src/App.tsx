@@ -36,7 +36,7 @@ function App() {
 
   // Handle browser back/forward navigation
   useEffect(() => {
-    const handlePopState = (event: PopStateEvent) => {
+    const handlePopState = () => {
       if (folder.length > 0) {
         setFolder(folder.slice(0, -1));
         setCurrentImageIndex(-1);
