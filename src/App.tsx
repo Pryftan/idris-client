@@ -27,7 +27,9 @@ function App() {
   const [filenames, setFilenames] = useState<FileInfo[]>([]);
   const [picture, setPicture] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(-1);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -38,6 +40,7 @@ function App() {
   }, [folder]);
 
   const selectRow = (file: FileInfo) => {
+    setSelectedFile(file.filename);
     if (file.isDir) {
       setFolder([...folder, file.filename]);
       setCurrentImageIndex(-1);
@@ -46,10 +49,15 @@ function App() {
       const imageIndex = filenames.findIndex(f => f.filename === file.filename);
       setCurrentImageIndex(imageIndex);
       setPicture(null);
+      setImageLoading(true);
       getPicture(folder, file.filename).then((image) => {
         const blob = new Blob([image], { type: 'image/jpeg' });
         const url = URL.createObjectURL(blob);
         setPicture(url);
+        setImageLoading(false);
+      }).catch((err) => {
+        setError(err.message || 'Error loading image');
+        setImageLoading(false);
       });
     }
   }
@@ -67,11 +75,17 @@ function App() {
 
     const nextFile = imageFiles[newIndex];
     setCurrentImageIndex(newIndex);
+    setSelectedFile(null);
     setPicture(null);
+    setImageLoading(true);
     getPicture(folder, nextFile.filename).then((image) => {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const url = URL.createObjectURL(blob);
       setPicture(url);
+      setImageLoading(false);
+    }).catch((err) => {
+      setError(err.message || 'Error loading image');
+      setImageLoading(false);
     });
   }
 
@@ -85,7 +99,14 @@ function App() {
               <button onClick={() => navigateImage('prev')}>Previous</button>
               <button onClick={() => navigateImage('next')}>Next</button>
             </div>
-            <img src={picture} alt="Picture" />
+            {imageLoading ? (
+              <div className="image-loading">
+                <div className="spinner"></div>
+                <p>Loading image...</p>
+              </div>
+            ) : (
+              <img src={picture} alt="Picture" />
+            )}
           </div>
         )}
         {loading && <p>Loading...</p>}
@@ -96,13 +117,20 @@ function App() {
               setFolder(folder.slice(0, -1));
               setCurrentImageIndex(-1);
               setPicture(null);
+              setSelectedFile(null);
             }}>...</li>
           </ul>
         )}
         {!loading && !error && (
           <ul>
             {filenames.map((file) => (
-              <li key={file.filename} onClick={() => selectRow(file)}>{file.filename}</li>
+              <li 
+                key={file.filename} 
+                onClick={() => selectRow(file)}
+                className={selectedFile === file.filename ? 'selected' : ''}
+              >
+                {file.filename}
+              </li>
             ))}
           </ul>
         )}
