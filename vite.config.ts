@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: '/idris-client/',
+  base: command === 'serve' ? '/' : '/idris-client/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -22,4 +22,4 @@ export default defineConfig({
     strictPort: true,
     host: true
   }
-})
+}))
