@@ -87,6 +87,7 @@ li.directory {
 li.parent-dir {
   font-weight: bold;
   color: #646cff;
+  justify-content: center;
 }
 
 li.parent-dir:hover {
