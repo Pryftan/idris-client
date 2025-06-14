@@ -1,0 +1,9 @@
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType application/javascript .ts
+AddType application/javascript .tsx
+
+<FilesMatch "\.(js|mjs|ts|tsx)$">
+    Header set Content-Type "application/javascript"
+    Header set X-Content-Type-Options "nosniff"
+</FilesMatch> 

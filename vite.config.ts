@@ -21,5 +21,15 @@ export default defineConfig(({ command }) => ({
     port: 3000,
     strictPort: true,
     host: true
+  },
+  preview: {
+    port: 3000,
+    strictPort: true,
+    host: true
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'es2020'
+    }
   }
 }))
