@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   base: '/idris-client/',
   build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
         format: 'es',
@@ -16,8 +18,8 @@ export default defineConfig({
     }
   },
   server: {
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
+    port: 3000,
+    strictPort: true,
+    host: true
   }
 })
