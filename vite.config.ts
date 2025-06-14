@@ -7,32 +7,11 @@ export default defineConfig(({ command }) => ({
   base: command === 'serve' ? '/' : '/idris-client/',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        format: 'es',
-        entryFileNames: 'assets/[name].[hash].js',
-        chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
-      }
-    }
+    assetsDir: 'assets'
   },
   server: {
     port: 3000,
     strictPort: true,
-    host: true,
-    fs: {
-      strict: false
-    }
-  },
-  preview: {
-    port: 3000,
-    strictPort: true,
     host: true
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      target: 'es2020'
-    }
   }
 }))
