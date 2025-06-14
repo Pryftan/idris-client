@@ -20,7 +20,10 @@ export default defineConfig(({ command }) => ({
   server: {
     port: 3000,
     strictPort: true,
-    host: true
+    host: true,
+    fs: {
+      strict: false
+    }
   },
   preview: {
     port: 3000,
