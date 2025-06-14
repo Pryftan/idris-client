@@ -155,10 +155,13 @@ function App() {
   }
 
   const loadFullSize = () => {
-    if (currentImageIndex === -1 || !filenames[currentImageIndex]) return;
+    if (currentImageIndex === -1) return;
+    
+    const imageFiles = filenames.filter(f => !f.isDir);
+    const currentFile = imageFiles[currentImageIndex];
+    if (!currentFile) return;
     
     setImageLoading(true);
-    const currentFile = filenames[currentImageIndex];
     getPicture(folder, currentFile.filename).then((image) => {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const url = URL.createObjectURL(blob);
