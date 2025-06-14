@@ -4,6 +4,7 @@ import { createConnectTransport } from '@connectrpc/connect-web';
 import { FileSystem } from './proto/filesystem_connectweb';
 import { type FileInfo } from './proto/filesystem_pb';
 import './App.css'
+import rwLogo from './assets/RWlogo.svg'
 
 const transport = createConnectTransport({
   baseUrl: 'https://f45d-146-70-186-166.ngrok-free.app/',
@@ -32,6 +33,30 @@ function App() {
   const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (folder.length > 0) {
+        setFolder(folder.slice(0, -1));
+        setCurrentImageIndex(-1);
+        setPicture(null);
+        setSelectedFile(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [folder]);
+
+  // Update history when folder changes
+  useEffect(() => {
+    if (folder.length > 0) {
+      window.history.pushState({ folder }, '', `#${folder.join('/')}`);
+    } else {
+      window.history.pushState({ folder: [] }, '', window.location.pathname);
+    }
+  }, [folder]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -106,11 +131,20 @@ function App() {
     });
   }
 
+  const goBack = () => {
+    if (folder.length > 0) {
+      setFolder(folder.slice(0, -1));
+      setCurrentImageIndex(-1);
+      setPicture(null);
+      setSelectedFile(null);
+    }
+  }
+
   return (
     <>
       <div className="card">
         <img 
-          src="/RWlogo.svg" 
+          src={rwLogo} 
           alt="RW Logo" 
           className={`logo ${isDarkMode ? 'dark-mode' : ''}`}
         />
@@ -134,12 +168,7 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {!loading && !error && folder.length > 0 && (
           <ul>
-            <li key={"..."} className="parent-dir" onClick={() => {
-              setFolder(folder.slice(0, -1));
-              setCurrentImageIndex(-1);
-              setPicture(null);
-              setSelectedFile(null);
-            }}>...</li>
+            <li key={"..."} className="parent-dir" onClick={goBack}>...</li>
           </ul>
         )}
         {!loading && !error && (
