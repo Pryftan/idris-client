@@ -18,8 +18,11 @@ async function getFilenames(folder: string[]): Promise<FileInfo[]> {
   return response.files;
 }
 
-async function getPicture(folder: string[], filename: string): Promise<Uint8Array> {
-  const response = await client.getImage({ path: folder.join("/") + "/" + filename });
+async function getPicture(folder: string[], filename: string, width?: number): Promise<Uint8Array> {
+  const response = await client.getImage({ 
+    path: folder.join("/") + "/" + filename,
+    ...(width !== undefined && { width }) 
+  });
   return response.imageData;
 }
 
@@ -33,6 +36,17 @@ function App() {
   const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Handle browser back/forward navigation
   useEffect(() => {
@@ -92,7 +106,7 @@ function App() {
       setCurrentImageIndex(imageIndex);
       setPicture(null);
       setImageLoading(true);
-      getPicture(folder, file.filename).then((image) => {
+      getPicture(folder, file.filename, windowWidth).then((image) => {
         const blob = new Blob([image], { type: 'image/jpeg' });
         const url = URL.createObjectURL(blob);
         setPicture(url);
@@ -120,7 +134,7 @@ function App() {
     setSelectedFile(null);
     setPicture(null);
     setImageLoading(true);
-    getPicture(folder, nextFile.filename).then((image) => {
+    getPicture(folder, nextFile.filename, windowWidth).then((image) => {
       const blob = new Blob([image], { type: 'image/jpeg' });
       const url = URL.createObjectURL(blob);
       setPicture(url);
@@ -138,6 +152,22 @@ function App() {
       setPicture(null);
       setSelectedFile(null);
     }
+  }
+
+  const loadFullSize = () => {
+    if (currentImageIndex === -1 || !filenames[currentImageIndex]) return;
+    
+    setImageLoading(true);
+    const currentFile = filenames[currentImageIndex];
+    getPicture(folder, currentFile.filename).then((image) => {
+      const blob = new Blob([image], { type: 'image/jpeg' });
+      const url = URL.createObjectURL(blob);
+      setPicture(url);
+      setImageLoading(false);
+    }).catch((err) => {
+      setError(err.message || 'Error loading full size image');
+      setImageLoading(false);
+    });
   }
 
   return (
@@ -160,7 +190,15 @@ function App() {
                 <p>Loading image...</p>
               </div>
             ) : (
-              <img src={picture} alt="Picture" />
+              <>
+                <img src={picture} alt="Picture" />
+                <button 
+                  className="full-size-button" 
+                  onClick={loadFullSize}
+                >
+                  View Full Size
+                </button>
+              </>
             )}
           </div>
         )}
