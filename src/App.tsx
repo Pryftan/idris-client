@@ -92,7 +92,7 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {!loading && !error && folder.length > 0 && (
           <ul>
-            <li key={"..."} onClick={() => {
+            <li key={"..."} className="parent-dir" onClick={() => {
               setFolder(folder.slice(0, -1));
               setCurrentImageIndex(-1);
               setPicture(null);
