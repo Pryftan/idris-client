@@ -196,9 +196,9 @@ function App() {
               <>
                 <div className="image-wrapper">
                   <img src={picture} alt="Picture" />
-                  {currentImageIndex !== -1 && filenames[currentImageIndex]?.comment && (
+                  {currentImageIndex !== -1 && (
                     <div className="image-comment">
-                      {filenames[currentImageIndex].comment}
+                      {filenames[currentImageIndex]?.comment || filenames[currentImageIndex]?.filename}
                     </div>
                   )}
                 </div>
