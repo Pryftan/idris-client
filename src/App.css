@@ -7,13 +7,24 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
+  margin-bottom: -0.5em;
 }
+
+.logo.dark-mode {
+  filter: brightness(0) invert(1);
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
+.logo.dark-mode:hover {
+  filter: brightness(0) invert(1) drop-shadow(0 0 2em #646cffaa);
+}
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -37,6 +48,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+  margin-top: -6em;
 }
 
 .read-the-docs {

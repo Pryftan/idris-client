@@ -31,6 +31,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [imageLoading, setImageLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     getFilenames(folder)
@@ -100,7 +109,11 @@ function App() {
   return (
     <>
       <div className="card">
-        <h2>Pictures</h2>
+        <img 
+          src="/RWlogo.svg" 
+          alt="RW Logo" 
+          className={`logo ${isDarkMode ? 'dark-mode' : ''}`}
+        />
         {picture && (
           <div className="image-container">
             <div className="navigation">
