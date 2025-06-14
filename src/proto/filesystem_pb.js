@@ -15,6 +15,8 @@ export const FileInfo = /*@__PURE__*/ proto3.makeMessageType(
   () => [
     { no: 1, name: "filename", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "is_dir", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "hidden", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 

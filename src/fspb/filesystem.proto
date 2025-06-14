@@ -7,6 +7,8 @@ option go_package = "local/proto";
 message FileInfo {
   string filename = 1;
   bool is_dir = 2;
+  string comment = 3;  // Optional comment for the file
+  bool hidden = 4;     // Whether the file should be hidden/ignored
 }
 
 // Request a list of files

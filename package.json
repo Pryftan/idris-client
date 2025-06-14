@@ -11,7 +11,7 @@
     "type-check": "tsc --noEmit",
     "pre-commit": "npm run lint && npm run type-check",
     "preview": "vite preview",
-    "pb:generate": "protoc --es_out=src/proto --connect-es_out=src/proto --proto_path=proto proto/filesystem.proto"
+    "pb:generate": "protoc --es_out=src/proto --connect-es_out=src/proto --proto_path=src/fspb filesystem.proto"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^1.10.1",

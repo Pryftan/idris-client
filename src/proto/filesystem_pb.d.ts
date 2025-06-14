@@ -22,6 +22,20 @@ export declare class FileInfo extends Message<FileInfo> {
    */
   isDir: boolean;
 
+  /**
+   * Optional comment for the file
+   *
+   * @generated from field: string comment = 3;
+   */
+  comment: string;
+
+  /**
+   * Whether the file should be hidden/ignored
+   *
+   * @generated from field: bool hidden = 4;
+   */
+  hidden: boolean;
+
   constructor(data?: PartialMessage<FileInfo>);
 
   static readonly runtime: typeof proto3;

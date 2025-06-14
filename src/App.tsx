@@ -191,7 +191,14 @@ function App() {
               </div>
             ) : (
               <>
-                <img src={picture} alt="Picture" />
+                <div className="image-wrapper">
+                  <img src={picture} alt="Picture" />
+                  {currentImageIndex !== -1 && filenames[currentImageIndex]?.comment && (
+                    <div className="image-comment">
+                      {filenames[currentImageIndex].comment}
+                    </div>
+                  )}
+                </div>
                 <button 
                   className="full-size-button" 
                   onClick={loadFullSize}
