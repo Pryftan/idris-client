@@ -54,6 +54,8 @@ li {
   cursor: pointer;
   border-bottom: 1px solid #eee;
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
 }
 
 li:hover {
@@ -62,6 +64,11 @@ li:hover {
 
 li.selected {
   background-color: #e6e6e6;
+}
+
+li.directory {
+  font-weight: 500;
+  color: #2c5282;
 }
 
 li.parent-dir {

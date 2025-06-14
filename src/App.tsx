@@ -34,7 +34,15 @@ function App() {
 
   useEffect(() => {
     getFilenames(folder)
-      .then(setFilenames)
+      .then(files => {
+        // Sort files: directories first, then alphabetically
+        const sortedFiles = [...files].sort((a, b) => {
+          if (a.isDir && !b.isDir) return -1;
+          if (!a.isDir && b.isDir) return 1;
+          return a.filename.localeCompare(b.filename);
+        });
+        setFilenames(sortedFiles);
+      })
       .catch((err) => setError(err.message || 'Error fetching filenames'))
       .finally(() => setLoading(false));
   }, [folder]);
@@ -127,9 +135,9 @@ function App() {
               <li 
                 key={file.filename} 
                 onClick={() => selectRow(file)}
-                className={selectedFile === file.filename ? 'selected' : ''}
+                className={`${selectedFile === file.filename ? 'selected' : ''} ${file.isDir ? 'directory' : ''}`}
               >
-                {file.filename}
+                {file.isDir ? '📁 ' : ''}{file.filename}
               </li>
             ))}
           </ul>
