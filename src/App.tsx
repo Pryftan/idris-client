@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
-import { FileSystem } from './proto/filesystem_connectweb';
+import { FileSystem } from './proto/filesystem_connect';
 import { type FileInfo } from './proto/filesystem_pb';
 import './App.css'
 import rwLogo from './assets/RWlogo.svg'
@@ -24,6 +24,26 @@ async function getPicture(folder: string[], filename: string, width?: number): P
     ...(width !== undefined && { width }) 
   });
   return response.imageData;
+}
+
+async function downloadFile(folder: string[], filename: string): Promise<void> {
+  try {
+    const response = await client.getFile({ path: folder.join("/") + "/" + filename });
+    const blob = new Blob([response.fileData]);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message || 'Error downloading file');
+    }
+    throw new Error('Unknown error occurred while downloading file');
+  }
 }
 
 function App() {
@@ -102,19 +122,30 @@ function App() {
       setCurrentImageIndex(-1);
       setPicture(null);
     } else {
-      const imageIndex = filenames.findIndex(f => f.filename === file.filename);
-      setCurrentImageIndex(imageIndex);
-      setPicture(null);
-      setImageLoading(true);
-      getPicture(folder, file.filename, windowWidth).then((image) => {
-        const blob = new Blob([image], { type: 'image/jpeg' });
-        const url = URL.createObjectURL(blob);
-        setPicture(url);
-        setImageLoading(false);
-      }).catch((err) => {
-        setError(err.message || 'Error loading image');
-        setImageLoading(false);
-      });
+      // Check if the file is an image based on extension
+      const isImage = /\.(jpg|jpeg|png|gif|bmp|webp)$/i.test(file.filename);
+      
+      if (isImage) {
+        const imageIndex = filenames.findIndex(f => f.filename === file.filename);
+        setCurrentImageIndex(imageIndex);
+        setPicture(null);
+        setImageLoading(true);
+        getPicture(folder, file.filename, windowWidth).then((image) => {
+          const blob = new Blob([image], { type: 'image/jpeg' });
+          const url = URL.createObjectURL(blob);
+          setPicture(url);
+          setImageLoading(false);
+        }).catch((err) => {
+          setError(err.message || 'Error loading image');
+          setImageLoading(false);
+        });
+      } else {
+        // For non-image files, trigger download
+        setError(null);
+        downloadFile(folder, file.filename).catch((err) => {
+          setError(err.message || 'Error downloading file');
+        });
+      }
     }
   }
 

@@ -69,3 +69,27 @@ export const GetImageResponse = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * Request file data
+ *
+ * @generated from message fs.GetFileRequest
+ */
+export const GetFileRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "fs.GetFileRequest",
+  () => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * Binary file data
+ *
+ * @generated from message fs.GetFileResponse
+ */
+export const GetFileResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "fs.GetFileResponse",
+  () => [
+    { no: 1, name: "file_data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+

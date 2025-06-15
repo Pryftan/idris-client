@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetImageRequest, GetImageResponse, ListFilesRequest, ListFilesResponse } from "./filesystem_pb.js";
+import { GetFileRequest, GetFileResponse, GetImageRequest, GetImageResponse, ListFilesRequest, ListFilesResponse } from "./filesystem_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,15 @@ export const FileSystem = {
       name: "GetImage",
       I: GetImageRequest,
       O: GetImageResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc fs.FileSystem.GetFile
+     */
+    getFile: {
+      name: "GetFile",
+      I: GetFileRequest,
+      O: GetFileResponse,
       kind: MethodKind.Unary,
     },
   }

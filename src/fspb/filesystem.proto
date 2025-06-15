@@ -32,8 +32,19 @@ message GetImageResponse {
   bytes image_data = 1;
 }
 
+// Request file data
+message GetFileRequest {
+  string path = 1;
+}
+
+// Binary file data
+message GetFileResponse {
+  bytes file_data = 1;
+}
+
 // Service definition
 service FileSystem {
   rpc ListFiles(ListFilesRequest) returns (ListFilesResponse);
   rpc GetImage(GetImageRequest) returns (GetImageResponse);
+  rpc GetFile(GetFileRequest) returns (GetFileResponse);
 }

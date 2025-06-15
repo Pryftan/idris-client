@@ -160,3 +160,55 @@ export declare class GetImageResponse extends Message<GetImageResponse> {
   static equals(a: GetImageResponse | PlainMessage<GetImageResponse> | undefined, b: GetImageResponse | PlainMessage<GetImageResponse> | undefined): boolean;
 }
 
+/**
+ * Request file data
+ *
+ * @generated from message fs.GetFileRequest
+ */
+export declare class GetFileRequest extends Message<GetFileRequest> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path: string;
+
+  constructor(data?: PartialMessage<GetFileRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "fs.GetFileRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFileRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFileRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFileRequest;
+
+  static equals(a: GetFileRequest | PlainMessage<GetFileRequest> | undefined, b: GetFileRequest | PlainMessage<GetFileRequest> | undefined): boolean;
+}
+
+/**
+ * Binary file data
+ *
+ * @generated from message fs.GetFileResponse
+ */
+export declare class GetFileResponse extends Message<GetFileResponse> {
+  /**
+   * @generated from field: bytes file_data = 1;
+   */
+  fileData: Uint8Array;
+
+  constructor(data?: PartialMessage<GetFileResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "fs.GetFileResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFileResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFileResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFileResponse;
+
+  static equals(a: GetFileResponse | PlainMessage<GetFileResponse> | undefined, b: GetFileResponse | PlainMessage<GetFileResponse> | undefined): boolean;
+}
+
